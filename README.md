@@ -8,7 +8,8 @@
 
 ### 스터디 멤버
 
-| <img src="https://github.com/user-attachments/assets/ca277ad7-5ab4-4943-938a-2acbd53bd488" width="150"/> | <img width="150" src="https://github.com/user-attachments/assets/ef137c39-3fb0-4c1f-b2de-68e0677cbc8b" /> | <img width="150" height="236" alt="image" src="https://github.com/user-attachments/assets/8098b778-e345-45af-b2e2-8e604092e6d9" /> | <img src="https://github.com/user-attachments/assets/3f5f789b-0782-41b2-962b-3b649a94e888" width="150"/> | <img src="https://github.com/user-attachments/assets/07b515ec-f3eb-4a65-adf9-86032de3ed54" width="150"/> |
+
+| <img src="https://avatars.githubusercontent.com/u/106025529?v=4" width="150"/> | <img width="150" src="https://avatars.githubusercontent.com/u/77954741?v=4" /> | <img width="150" height="236" alt="image" src="https://avatars.githubusercontent.com/u/106594632?v=4" /> | <img src="https://avatars.githubusercontent.com/u/44666092?v=4" width="150"/> | <img src="https://avatars.githubusercontent.com/u/76045552?v=4" width="150"/> |
 |:----------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|
 | [**강지륜**](https://github.com/rosieisor) | [**김민지**](https://github.com/ghi512) | [**김진호**](https://github.com/pilltong22) | [**배태용**](https://github.com/HoodRyan) | [**정유진**](https://github.com/YujinJeong1006) |
 
