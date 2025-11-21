@@ -1,6 +1,8 @@
 ## Garbage Collection (GC) 이란?
 > 자바의 메모리 관리 방법 중 하나
 
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/a5af260e-fb94-40a5-a4db-9f8a652e4d23" />
+
 - JVM의 Heap 영역에서 동적으로 할당했던 메모리 중 **필요 없게 된 메모리 객체를 모아 주기적으로 제거하는 프로세스**
 
 - C / C++ 언어에서는 개발자가 직접 메모리 해제 (**`free()`**)
@@ -33,6 +35,8 @@
 - **`Reachable`** : 객체가 참조되고 있는 상태
 - **`Unreachable`**: 객체가 참조되고 있지 않은 상태 (GC의 대상)
 
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/3ba3377b-70b2-4c31-96f1-ecc14169a601" />
+
 
 - JVM 메모리에서 객체들은 실질적으로 Heap 영역에 생성되고  Method Area이나 Stack Area에서는 Heap Area에 생성된 객체의 주소만 참조하는 형식으로 구성된다.
     - Heap 영역
@@ -56,7 +60,12 @@
 > GC에서 사용되는 객체를 솎아내는 내부 알고리즘
 - GC가 동작하는 기초적인 청소 과정
 
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/6f3bf2a2-6fd8-485c-942c-4635eeeb6c79" />
+
 - GC 대상 객체를 식별(Mark)하고 제거(Sweep)하며 객체가 제거되어 파편화된 메모리 영역을 앞에서부터 채워나가는 작업(Compaction)을 수행한다.
+
+![rcjSZ0T](https://github.com/user-attachments/assets/f75b3e13-c32c-4d5e-be77-72d6b9d76da4)
+
 
 **`Mark`** : Root Space으로부터 그래프 순회를 통해 연결된 객체들을 찾아내 각각 어떤 객체를 참조하고 있는지 찾아서 마킹한다. 
 
@@ -70,6 +79,8 @@
 
 ## GC 동작 과정
 
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/f3cd1838-f9bf-4ba6-a55f-058f43c68393" />
+
 ### Heap 메모리 구조
 > 동적으로 레퍼런스 데이터가 저장되는 공간으로, GC의 대상이 되는 공간
 - Heap 영역은 처음 설계될 때 다음 2가지를 전제(Weak Generational Hypothesis)로 설계되었다.
@@ -80,6 +91,8 @@
 
 이러한 특성을 이용해 보다 효율적인 메모리 관리를 위해 객체의 생존 기간에 따라 물리적인 Heap 영역을 나눴고, Young과 Old 총 2가지 영역으로 설계하였다.
 
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/24e121d8-849a-4392-9d7a-c0542683c91a" />
+
 ### Young 영역 (Young Generation)
 
 > 새롭게 생성된 객체가 할당(Allocation)되는 영역
@@ -88,6 +101,9 @@
 - Young 영역에 대한 GC를 Minor GC라고 부른다.
 
 - 효율적인 GC를 위해 Young 영역을 3가지 영역으로 나눈다.
+
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/8eb9ad8c-d121-4e7f-b023-a4edeb4f02c5" />
+
 
 - Eden
     - new를 통해 새로 생성된 객체가 할당되는 영
@@ -109,6 +125,8 @@
 
 ### Minor GC 과정
 
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/af176861-4167-435d-9f05-cd1d9f22b2fc" />
+
 - Young Generation 영역은 짧게 살아남는 메모리들이 존재하는 공간이다.
 - 모든 객체는 처음에 Young Generation에 생성된다.
 - Young Generation의 공간은 Old Generation에 비해 상대적으로 작기 때문에 메모리 상의 객체를 찾아 제거하는데 적은 시간이 걸린다.
@@ -117,24 +135,25 @@
 
 
 1. 처음 생성된 객체는 Young Generation 영역의 일부인 Eden 영역에 할당된다. Eden 영역이 다 채워지면 Minor GC가 일어난다.
-
+![image](https://github.com/user-attachments/assets/b93efe6d-4904-4390-b314-f7a073443198)
 
 2. Mark and Sweep 이후에 살아남은 객체들은 Survivor 영역으로 옮겨지고 Age bit 값이 증가하게 된다.
-
-
+![image (1)](https://github.com/user-attachments/assets/bd2d128c-9984-4642-a3a2-c8be467ff1e7)
 
 3. 또다시 Eden 영역에 신규 객체들도 가득 차면 Minor GC가 동작한다.
-
-
+![image (2)](https://github.com/user-attachments/assets/b8b2a5ad-bcb2-4a00-94df-bfbaaeb2d6a8)
 
 - 살아남은 객체를 옮길 때 두 개의 Survivor 공간 중 이미 채워져 있는 공간으로 이동
 
 4. 이동하기 전에 Survivor 공간이 가득 차므로 GC가 동작한다.
-
+![image (3)](https://github.com/user-attachments/assets/fda0118a-79bd-4321-b053-c994c1ac689c)
 
 - Survivor 0에서 살아남은 객체들은 Survivor 1으로 이동한다.
 
 ### Major GC 과정
+
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/ed8b5835-ea8b-49ba-af72-ba54dc530ffe" />
+
 - Old Generation은 길게 살아남는 메모리들이 존재하는 공간이다.
 - Old Generation의 객체들은 처음에 Young Generation에 의해 시작되었으나 GC 과정 중에 제거되지 않은 경우 age 임계값이 차게 되어 이동된다.
 - Major GC는 객체들이 계속 Promotion되어 Old 영역의 메모리가 부족해지면 발생한다.
@@ -144,9 +163,10 @@
 
 1. 특정 age bit를 넘으면 Old Generation 으로 이동한다.
 
-
+![image (4)](https://github.com/user-attachments/assets/c999ff12-eda2-4102-9e35-f865cd83fc8d)
 
 2. Old Generation도 가득 차면 Major GC가 동작한다.
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/6d43e0a0-b1e0-4251-a89a-f31b4f9089b5" />
 
 - Old 영역에 있는 모든 객체들을 검사하여 참조되지 않는 객체들을 한번에 삭제하는 Major GC가 실행한다.
 - Old 영역은 Young 영역에 비해 상대적으로 큰 공간을 가지므로 이 공간에서 메모리 상의 객체 제거에 많은 시간이 걸린다.
