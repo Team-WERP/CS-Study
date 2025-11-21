@@ -20,7 +20,7 @@
 |주차|기간|대주제|강지륜|김민지|김진호|배태용|정유진|
 |--|--|--|--|--|--|--|--|
 |01|11.17-11.21|Java|[가비지컬렉션](https://github.com/Team-WERP/CS-Study/blob/main/Java/01_Garbage%20Collection.md)|[클래스](https://github.com/Team-WERP/CS-Study/blob/main/Java/01_%ED%81%B4%EB%9E%98%EC%8A%A4.md)|[JVM, JMM](https://github.com/Team-WERP/CS-Study/blob/main/Java/01_JVM%2C%20JMM.md)|[프로그램 실행 과정](https://github.com/Team-WERP/CS-Study/blob/main/Java/01_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%20%EC%8B%A4%ED%96%89%20%EA%B3%BC%EC%A0%95.md)|[객체지향언어](https://github.com/Team-WERP/CS-Study/blob/main/Java/01_%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%96%B8%EC%96%B4.md)|
-|02|11.21-11/26|DB|Transaction|ElasticSearch|정규화, 반정규화|DB Lock|DB Index|
+|02|11.21-11.26|DB|Transaction|ElasticSearch|정규화, 반정규화|DB Lock|DB Index|
 
 <br>
 
