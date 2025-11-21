@@ -27,7 +27,7 @@
 - **실행 엔진(Execution Engine)**
     - **Interpreter (인터프리터):** 바이트코드를 한줄씩 해석하면서 실행한다.
     - **JIT Compiler (Just-In-Time):** 자주 실행되는 코드(핫스팟)를 기계어로 실시간 컴파일
-        - (캐시 느낌..?)
+        - (캐시)
         - 인터프리터보다 빠름.
 - **[Garbage Collector](https://www.notion.so/Garbage-Collector-2b1b0ab4fb9f804d84f9c5e00ad248f5?pvs=21) (GC)**
     - 필요 없어진 메모리 자동 회수
@@ -103,3 +103,4 @@ JMM은 멀티스레드 환경에서 스레드의 값이 언제, 어떤 순서로
     - synchronized 블록
     - final 필드의 초기화 규칙
         - final 필드는 선언과 동시에 초기화 되기 때문에 안전하다.(값이 변하지 않는다.)
+
