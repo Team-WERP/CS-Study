@@ -32,6 +32,57 @@
 ### 트랜잭션 격리 수준(Isolation Level)
 <img height="300" alt="image" src="https://github.com/user-attachments/assets/f7b099dc-62fc-491f-b3a0-921cb827bb03" />
 
+<br/>
+<br/>
+
+**READ UNCOMMITTED (레벨 0) - 커밋되지 않는 읽기**
+- 각 트랜잭션에서의 변경 내용을 Commit 이나 Rollback 여부와 상관없이 다른 트랜잭션에서 값을 읽을 수 있다.
+- 즉, 커밋되지 않은 데이터조차 접근할 수 있는 격리 수
+- 정합성에 문제가 많은 격리 수준이므로 사용하지 않는 것을 권장
+- DIRTY READ 현상 발생
+   - **DIRTY READ**: 트랜잭션 작업이 완료되지 않았음에도 다른 트랜잭션에서 볼 수 있다.
+   <img height="300" alt="image" src="https://github.com/user-attachments/assets/2740567f-0d80-4383-84a7-9db750b728e5" />
+   
+   - Commit 되지 않은 상태지만 Update된 값을 다른 트랜잭션에서 읽기 가능
+
+<br/>
+
+
+**READ COMMITTED (레벨 1) - 커밋된 읽기**
+
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/5fb07627-dd92-4b41-a073-d33b810dbc57" />
+
+- RDB에서 대부분 기본적으로 사용되고 있는 격리 수준
+- 실제 테이블 값을 가져오는 게 아니라 Undo 영역에 백업된 레코드에서 값을 가져온다.
+- DIRTY READ 현상 발생 X
+- Non-repeatable Read 현상 발생
+   - **Non-repeatable Read**: 한 트랜잭션에서 같은 쿼리를 두 번 실행할 때 그 사이에 다른 트랜잭션 값을 수정 또는 삭제하면서 두 쿼리의 결과가 상이하게 나타나는 일관성이 깨진 현상
+  <img height="300" alt="image" src="https://github.com/user-attachments/assets/d008a419-d071-4963-b48e-2066e418982d" />
+
+<br/>
+
+**REPEATABLE READ (레벨 2) - 반복가능한 읽기**
+
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/ce6eb61a-271f-47fa-85dc-c9e6355faa60" />
+
+- Undo 공간에 백업해두고 실제 레코드 값을 변경
+- MySQL에서는 트랜잭션마다 트랜잭션 ID를 부여해 트랜잭션 ID보다 작은 번호에서 변경한 것만 읽음
+- 백업된 데이터는 불필요하다고 판단하는 시점에 주기적으로 삭제
+- Undo에 백업된 레코드가 많아지면 MySQL 서버의 처리 성능이 떨어질 수 있음
+- 이러한 변경방식을 MVCC(Multi Version Concurrency Control) 라고 부름
+
+- PHANTOM READ 현상 발생
+   - PHANTOM READ: 다른 트랜잭션에서 수행한 변경 작업에 의해 레코드가 보였다가 안 보였다가 하는 현상
+   - REPEATABLE READ 에 의하면 원래 출력되지 않아야 하는데 Update 영향을 받은 후부터 출력
+   - 방지 방법: 쓰기(write) 잠금을 걸어야 함
+  <img height="300" alt="image" src="https://github.com/user-attachments/assets/8d660194-61be-4149-9dac-c442cc37d086" />
+
+<br/>
+
+**SERIALIZABLE (래밸 3) - 직렬화 가능**
+- 가장 엄격한 격리 수준, 완벽한 읽기 일관성 모드 제공
+- 여러 트랜잭션이 동일한 레코드에 동시 접근 불가
+- 트랜잭션이 순차적으로 처리되어야 하므로 성능 측면에서 동시 처리 성능이 가장 낮음
 
 <br/>
 
@@ -79,3 +130,4 @@
 - https://velog.io/@yu-jin-song/DB-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98Transaction
 - https://star7sss.tistory.com/823#1)_%EC%9B%90%EC%9E%90%EC%84%B1_(Atomicity)
 - https://coding-factory.tistory.com/226
+- https://velog.io/@shasha/Database-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%A0%95%EB%A6%AC
