@@ -74,15 +74,13 @@
 - Undo에 백업된 레코드가 많아지면 MySQL 서버의 처리 성능이 떨어질 수 있음
 - 이러한 변경방식을 MVCC(Multi Version Concurrency Control) 라고 부름
 
-- PHANTOM READ(팬텀 읽기) 현상 발생
+- PHANTOM READ(팬텀 읽기, 유령 읽기) 현상 발생
    - PHANTOM READ: 다른 트랜잭션에서 수행한 변경 작업에 의해 레코드가 보였다가 안 보였다가 하는 현상
-   - REPEATABLE READ 에 의하면 원래 출력되지 않아야 하는데 Update 영향을 받은 후부터 출력
-   - 방지 방법: 쓰기(write) 잠금을 걸어야 함
-  <img height="300" alt="image" src="https://github.com/user-attachments/assets/8d660194-61be-4149-9dac-c442cc37d086" />
+  <img height="300" alt="image" src="https://github.com/user-attachments/assets/8c9c9df3-c8d4-4d04-8d53-33c9149a32de" />
 
 <br/>
 
-**SERIALIZABLE (레밸 3) - 직렬화 가능**
+**SERIALIZABLE (레벨 3) - 직렬화 가능**
 - 가장 엄격한 격리 수준, 완벽한 읽기 일관성 모드 제공
 - 여러 트랜잭션이 동일한 레코드에 동시 접근 불가
 - 트랜잭션이 순차적으로 처리되어야 하므로 성능 측면에서 동시 처리 성능이 가장 낮음
@@ -134,3 +132,4 @@
 - https://star7sss.tistory.com/823#1)_%EC%9B%90%EC%9E%90%EC%84%B1_(Atomicity)
 - https://coding-factory.tistory.com/226
 - https://velog.io/@shasha/Database-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%A0%95%EB%A6%AC
+- https://sundotcom.tistory.com/23
